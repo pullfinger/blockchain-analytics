@@ -4,7 +4,14 @@ bitcoin-cli versus jq for fast streaming bulk analysis of fhe bitcoin blockchain
 OSX Safari owners, here's a 3 minute MOV screencast (200MB) showing above commands in action:
 http://fa213cf3b0655b019941-5d6bc35513629a60cc1bfa251350258f.r59.cf2.rackcdn.com/bitcoinclivsjq.mov
 
+### installation
+```git clone https://github.com/pullfinger/blockchain-analytics.git```
+install jq https://github.com/stedolan/jq/releases
+(tested on jq 1.5) 
+other things you may need:  awk, sed, grep bitcoind and bitcoin-cli
+
 ### usage:
+start your bitcoind: ``` bitcoind --txindex -daemon```
 from the blockchain-analytics folder run these commands to gain fu:
 
 
