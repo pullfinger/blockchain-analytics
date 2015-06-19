@@ -6,12 +6,19 @@ http://fa213cf3b0655b019941-5d6bc35513629a60cc1bfa251350258f.r59.cf2.rackcdn.com
 
 ### installation
 ```git clone https://github.com/pullfinger/blockchain-analytics.git```
+
 install jq https://github.com/stedolan/jq/releases
-(tested on jq 1.5) 
-other things you may need:  awk, sed, grep bitcoind and bitcoin-cli
+(tested on jq 1.5)
+
+other things you may need:  
+awk
+sed
+grep 
+bitcoind andbitcoin-cli
 
 ### usage:
 start your bitcoind: ``` bitcoind --txindex -daemon```
+
 from the blockchain-analytics folder run these commands to gain fu:
 
 
