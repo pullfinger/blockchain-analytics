@@ -9,3 +9,5 @@ while read blockhash ; do
         sed 's/\[//g'|sed 's/\]//g'| \
         grep --line-buffered .
 done;
+
+# DRY this should really accept input from raw_block_multi.sh
