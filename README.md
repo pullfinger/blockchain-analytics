@@ -51,12 +51,15 @@ same twelver with the -c for compact
 ```./list_blockhash.sh 12 | ./raw_block_multi.sh | jq -c -f detail_block.jq```
 
 latest block worth of transaction ids
+
 ```./list_blockhash.sh | ./list_blockhash_txid.sh```
 
 latest 12 blocks worth of transaction ids
+
 ```./list_blockhash.sh 12 | ./list_blockhash_txid.sh```
 
 first 100 blocks worth of transaction ids
+
 ```./list_blockhash.sh 100 0 | ./list_blockhash_txid.sh```
 
 first 100 blocks worth of raw transaction headers
