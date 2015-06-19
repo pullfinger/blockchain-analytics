@@ -31,7 +31,6 @@ else
         else
             upper_boundary_block_height=$midpoint_block_height
             upper_boundary_blockhash=`bitcoin-cli getblockhash $upper_boundary_block_height`
-            #upper_boundary_block_timestamp=`bitcoin-cli getblock $upper_boundary_blockhash | jq '.time'`
         fi
     done
     echo $upper_boundary_block_height
