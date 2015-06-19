@@ -10,11 +10,16 @@ http://fa213cf3b0655b019941-5d6bc35513629a60cc1bfa251350258f.r59.cf2.rackcdn.com
 install jq https://github.com/stedolan/jq/releases
 (tested on jq 1.5)
 
-other things you may need:  
+other things you may need: 
+
 awk
+
 sed
-grep 
-bitcoind andbitcoin-cli
+
+grep
+
+bitcoind and bitcoin-cli
+
 
 ### usage:
 start your bitcoind: ``` bitcoind --txindex -daemon```
