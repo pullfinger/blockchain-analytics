@@ -1,7 +1,7 @@
 # blockchain-analytics
 bitcoin-cli versus jq for fast streaming bulk analysis of fhe bitcoin blockchain
 
-OSX Safari owners, here's a 3 minute MOV screencast (200MB) showing above commands in action:
+OSX Safari owners, here's a 3 minute MOV screencast (200MB) showing below commands in action:
 http://fa213cf3b0655b019941-5d6bc35513629a60cc1bfa251350258f.r59.cf2.rackcdn.com/bitcoinclivsjq.mov
 
 ### installation
