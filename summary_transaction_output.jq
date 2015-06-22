@@ -4,8 +4,8 @@ def sum(f): reduce .[] as $row (0; . + ($row|f) );
 
 {
     "bitcoin": (sum(.satoshi) / 100000000)
-    , "transaction_count": . | length
-    , "output_count": sum(.output_count)
+    , "transaction_count": map(.txid) | unique | length 
+    , "output_count": . | length
     , "min_time": min .time
     , "max_time": max .time
 }
