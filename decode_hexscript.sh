@@ -6,8 +6,8 @@ then
     decodedscript=`bitcoin-cli decodescript "$hexscript"`;
     combinedjson=`echo $jsonwithhex $decodedscript`
 else
-     decodedscript="{\"asm\":null,\"type\":null,\"p2sh\":null} "
-     combinedjson=`echo $jsonwithhex $decodedscript`
+    decodedscript="{\"asm\":null,\"type\":null,\"p2sh\":null} "
+    combinedjson=`echo $jsonwithhex $decodedscript`
 fi
 
 echo $combinedjson|sed 's/} {/\,/g'
