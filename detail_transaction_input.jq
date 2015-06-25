@@ -1,3 +1,4 @@
+#usage: ./list_blockhash.sh 2 355000 | ./list_blockhash_txid.sh| ./raw_transaction_multi.sh | jq -c -f ./detail_transaction_input.jq
 {
     "blockhash": .blockhash
     , "time": .time

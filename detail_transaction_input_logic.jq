@@ -13,4 +13,9 @@
     , "asm": .asm
     , "p2sh": .p2sh
     , "type": .type
+    , "vin_blockhash": .vin_blockhash
+    , "vin_time": .vin_time
+    , "vin_blocktime": .vin_blocktime
+    , "vin_satoshi": .vin_satoshi
+    , "days_destroyed": (if .vin_time > 0 then (.time - .vin_time) * .vin_satoshi / ( 60 * 60 * 24 ) else 0 end)
 }
