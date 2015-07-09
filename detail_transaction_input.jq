@@ -4,6 +4,7 @@
     , "time": .time
     , "blocktime": .blocktime
     , "txid": .txid
+    , "vout_count": .vout[] | length
     , "vin": .vin[]
 }
 |
@@ -12,6 +13,7 @@
     , "time": .time
     , "blocktime": .blocktime
     , "txid": .txid
+    , "vout_count": .vout_count
     , "coinbase": .vin.coinbase
     , "vin_txid": .vin.txid
     , "vin_vout": .vin.vout
