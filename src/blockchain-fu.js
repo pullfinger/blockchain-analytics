@@ -56,4 +56,3 @@ var getmostrecentblocktime = getlatestblocktime()
 process.stdin
 .on('data', getmostrecentblocktime)
 
-
