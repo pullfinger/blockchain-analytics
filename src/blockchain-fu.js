@@ -4,9 +4,10 @@ var bitcoin = require('bitcoin')
 
 var client = new bitcoin.Client({
   host: '127.0.0.1',
+  port: 8332,
   // dev creds, must move to config file prior to production.'
-  user: 'RIPPLE',
-  pass: 'r1pp1e',
+  user: 'bitcoinrpc',
+  pass: '9XtkJR1yyjn4iXwxCZLypdW75E5FG3mjNH4RZXVoWCLx',
   timeout: 30000
 });
 
