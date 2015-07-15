@@ -1,18 +1,17 @@
-var bitcoin = require('bitcoin')
+var readline = require('readline');
 var async = require('async')
+var bitcoin = require('bitcoin')
 
 var client = new bitcoin.Client({
   host: '127.0.0.1',
-  port: 8332,
   // dev creds, must move to config file prior to production.'
-  user: 'bitcoinrpc',
-  pass: '9XtkJR1yyjn4iXwxCZLypdW75E5FG3mjNH4RZXVoWCLx',
+  user: 'RIPPLE',
+  pass: 'r1pp1e',
   timeout: 30000
 });
 
-function getblockcount( target_unix_time, callback ) {
+function getblockcount( callback ) {
     setTimeout(function () {
-        console.log("target_unix_time: ", parseInt(target_unix_time))
         client.getBlockCount( function(err, blockcount, resHeaders) {
             callback(null, parseInt(blockcount))
         })
@@ -37,22 +36,35 @@ function getblock( blockhash, callback) {
 
 function parseblocktime( block, callback) {
     setTimeout(function () {
-        console.log("block.time:       ", block.time)
         callback(null, block.time)
     }, 0)
 }
 
-function getlatestblocktime (current_unix_time ) {
-    return async.compose(
-        parseblocktime,
-        getblock,
-        getblockhash,
-        getblockcount
-    )
-}
+var latestblocktime = async.compose(parseblocktime, getblock, getblockhash, getblockcount);
 
-var getmostrecentblocktime = getlatestblocktime()
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+});
 
-process.stdin
-.on('data', getmostrecentblocktime)
-
+rl.on('line', function(line){
+    async.series(
+        {
+            targetunixtime: function(callback){
+                setTimeout(function(){
+                    callback(null, line);
+                }, 0);
+            },
+            latestblocktime: function(callback){
+                setTimeout(function(){
+                    latestblocktime( function (err, result) {
+                       callback(null, result)
+                    });
+                }, 0);
+            }
+        }
+        , function (err, results) {
+        console.log(results)
+    })
+})
