@@ -35,6 +35,7 @@ function arrangeListsPerTxid (line) {
                 arrTxid[txid].satoshi = []
                 arrTxid[txid].time = lineobj.time
                 arrTxid[txid].type = lineobj.type
+                arrTxid[txid].vout_count = lineobj.vout_count
             }
             if(!(inputid in arrTxInputDedup)) {
                 arrTxInputDedup.push( arrTxInputDedup[inputid] = {})
