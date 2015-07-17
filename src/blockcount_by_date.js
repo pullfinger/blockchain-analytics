@@ -1,3 +1,7 @@
+// usage
+// date -v-1m +%s | node src/blockcount_by_date.js| jq .
+// gives you the blockcount exactly one month ago
+
 var readline = require('readline')
 var async = require('async')
 var bitcoin = require('bitcoin')
@@ -111,9 +115,9 @@ rl.on('line', function(line){
                                 console.log(JSON.stringify(low))
                             }
                         })
-                    }
-                )
-            }
-        }
-    )
-})
+                    } //
+                )     //  *   *  *  **  * * *    *
+            }         //  ** ** * * * * * * *   * *
+        }             //  * * * * * * * * * *   * *
+    )                 //  *   *  *  **  *** ***  *
+})                    //
