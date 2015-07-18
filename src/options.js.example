@@ -1,0 +1,6 @@
+'use strict';
+module.exports = {
+    bitcoind_host: '###.###.###.###',
+    bitcoind_rpc_user: '*********',
+    bitcoind_rpc_pass: '*********',
+    };

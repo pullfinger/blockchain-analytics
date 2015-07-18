@@ -5,12 +5,11 @@
 var readline = require('readline')
 var async = require('async')
 var bitcoin = require('bitcoin')
-
+var config = require(__dirname + '/options.js');
 var client = new bitcoin.Client({
-  host: '127.0.0.1',
-  // dev creds, must move to config file prior to production.'
-  user: 'RIPPLE',
-  pass: 'r1pp1e',
+  host: config.bitcoind_host,
+  user: config.bitcoind_rpc_user,
+  pass: config.bitcoind_rpc_pass,
   timeout: 30000
 });
 
@@ -120,4 +119,4 @@ rl.on('line', function(line){
             }         //  ** ** * * * * * * *   * *
         }             //  * * * * * * * * * *   * *
     )                 //  *   *  *  **  *** ***  *
-})                    //
+})                    
