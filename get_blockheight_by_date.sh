@@ -12,7 +12,7 @@ latest_blockheight=`bitcoin-cli getblockcount`
 latest_blockhash=`bitcoin-cli getblockhash $latest_blockheight`
 latest_block_timestamp=`bitcoin-cli getblock $latest_blockhash | jq '.time'`
 if [ $latest_block_timestamp -lt $target_timestamp ]; then
-    echo $latest_blockhash
+    echo $latest_blockheight
 else
     upper_boundary_block_height=`expr $latest_blockheight`
     lower_boundary_block_height=1

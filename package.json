@@ -11,7 +11,8 @@
     "event-stream": "^3.3.1",
     "moment": "^2.10.3",
     "simple-statistics": "^0.9.2",
-    "split": "^1.0.0"
+    "split": "^1.0.0",
+    "yargs": "^3.15.0"
   },
   "devDependencies": {},
   "scripts": {

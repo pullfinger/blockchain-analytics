@@ -1,61 +1,10 @@
-// usage
-// date -v-1m +%s | node src/blockcount_by_date.js| jq .
-// gives you the blockcount exactly one month ago
+//usage: date -v-1m +%s | node src/blockcount_by_date.js
+//        block height exactly one month ago
+//  date -j -f "%Y-%m-%d" "2010-10-02" "+%s" | node src/blockcount_by_date.js
+//        any date converted to unix time
 
 var readline = require('readline')
-var async = require('async')
-var bitcoin = require('bitcoin')
-var config = require(__dirname + '/options.js');
-var client = new bitcoin.Client({
-  host: config.bitcoind_host,
-  user: config.bitcoind_rpc_user,
-  pass: config.bitcoind_rpc_pass,
-  timeout: 30000
-});
-
-function getlatestblockcount( callback ) {
-    setTimeout(function () {
-        client.getBlockCount( function(err, blockcount, resHeaders) {
-            callback(null, blockcount)
-        })
-    }, 0)
-}
-
-function getblockhash( blockcount, callback) {
-    setTimeout(function () {
-        client.getBlockHash( blockcount, function(err, blockhash, resHeaders) {
-            callback(null, blockhash)
-        })
-    }, 0)
-}
-
-function getblocktime( blockcount, callback) {
-    setTimeout(function () {
-        client.getBlockHash( blockcount, function(err, blockhash, resHeaders) {
-            client.getBlock( blockhash, function(err, block, resHeaders) {
-                parseblocktime( block, function(err, blocktime, resHeaders) {
-                    callback(null, blocktime)
-                })
-            })
-        })
-    }, 0)
-}
-
-function getblock( blockhash, callback) {
-    setTimeout(function () {
-        client.getBlock( blockhash, function(err, block, resHeaders) {
-            callback(null, block)
-        })
-    }, 0)
-}
-
-function parseblocktime( block, callback) {
-    setTimeout(function () {
-        callback(null, block.time)
-    }, 0)
-}
-
-var latestblocktime = async.compose(parseblocktime, getblock, getblockhash, getlatestblockcount);
+var bulkchain = require('../lib/bulkchain.js')
 
 var rl = readline.createInterface({
   input: process.stdin,
@@ -64,59 +13,7 @@ var rl = readline.createInterface({
 });
 
 rl.on('line', function(line){
-    async.series(
-        {
-            latestblocktime: function(callback){
-                setTimeout(function(){
-                    latestblocktime( function (err, result) {
-                       callback(null, result)
-                    });
-                }, 0);
-            },
-            latestblockcount: function(callback){
-                setTimeout(function(){
-                    getlatestblockcount( function (err, result) {
-                       callback(null, result)
-                    });
-                }, 0);
-            }
-        }
-        , function (err, startingpoint) {
-            guess = {}
-            if (parseInt(line) >= startingpoint.latestblocktime) {
-                guess.blockcount = startingpoint.latestblockcount
-            }
-            else
-            {
-                var low = 1
-                var high = startingpoint.latestblockcount
-                async.whilst(
-                    function () {
-                        return low < (high - 1)
-                    },
-                    function (callback) {
-                        halfdistance = parseInt(( high - low ) / 2)
-                        midpoint = halfdistance + low
-                        getblocktime( parseInt(low + ((high - low) / 2)), function (err, blocktime) {
-                            if (blocktime > parseInt(line)) {
-                                high = parseInt(low + ((high - low) / 2))
-                                setTimeout(callback, 0)
-                            }                            
-                            else{
-                                low = parseInt(low + ((high - low) / 2))
-                                setTimeout(callback, 0)
-                            }
-                        })
-                    },
-                    function (err, guess) {
-                        getblocktime( parseInt(low) , function (err, blocktime) {
-                            if ( blocktime <= line ) {
-                                console.log(JSON.stringify(low))
-                            }
-                        })
-                    } //
-                )     //  *   *  *  **  * * *    *
-            }         //  ** ** * * * * * * *   * *
-        }             //  * * * * * * * * * *   * *
-    )                 //  *   *  *  **  *** ***  *
-})                    
+    blockcount_by_date(line, function(blockcount) {
+        setTimeout(console.log(blockcount), 0)
+    })
+})
