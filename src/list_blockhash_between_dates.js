@@ -8,11 +8,8 @@
 var argv = require('yargs').argv
 var bulkchain = require('../lib/bulkchain.js')
 
-list_blockhash_between_dates(argv.startdate, argv.enddate, function(blockhash) {
+list_blockhash_between_dates(argv.startdate, argv.enddate, function(hashlist) {
     setTimeout(function() {
-        console.log(blockhash)
+        console.log(JSON.stringify(hashlist))
     })
-    
 })
-
-
