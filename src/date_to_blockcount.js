@@ -1,6 +1,6 @@
-//usage: date -v-1m +%s | node src/blockcount_by_date.js
+//usage: date -v-1m +%s | node src/date_to_blockcount.js
 //        block height exactly one month ago
-//  date -j -f "%Y-%m-%d" "2010-10-02" "+%s" | node src/blockcount_by_date.js
+//  date -j -f "%Y-%m-%d" "2010-10-02" "+%s" | node src/date_to_blockcount.js
 //        any date converted to unix time
 
 var readline = require('readline')
@@ -13,7 +13,7 @@ var rl = readline.createInterface({
 });
 
 rl.on('line', function(line){
-    blockcount_by_date(line, function(blockcount) {
+    date_to_blockcount(line, function(blockcount) {
         setTimeout(console.log(blockcount), 0)
     })
 })
