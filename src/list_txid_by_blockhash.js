@@ -14,6 +14,6 @@ var rl = readline.createInterface({
 
 rl.on('line', function(line){
     list_txid_by_blockhash(line, function(txidlist) {
-        setTimeout(console.log(JSON.stringify(txidlist)), 0)
+        setTimeout(console.log(JSON.stringify([].concat.apply(txidlist))), 0)
     })
 })

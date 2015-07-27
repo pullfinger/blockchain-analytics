@@ -1,7 +1,7 @@
 echo 7275eb1918dcf95d73937511373b49de60381f2a4f2f5fa0ea166e8c1e9b3f3c | ./raw_transaction_multi.sh |jq -c -f ./detail_transaction_input.jq | ./decode_input_hexscript.sh| jq -c -f detail_transaction_input_decode.jq | ./get_transaction_input_content.sh | jq -c -f detail_transaction_input_logic.jq | jq -s -c -f ./signature_transaction.jq | grep --line-buffered . | node signature_transaction.js | jq .
 
 
-./list_blockhash_between_dates.sh "2015-03-01 00:00:00 -0700" "2015-03-01 01:00:00 -0700" | ./list_blockhash_txid.sh| ./raw_transaction_multi.sh |jq -c -f ./detail_transaction_input.jq | ./decode_input_hexscript.sh| jq -c -f detail_transaction_input_decode.jq | ./get_transaction_input_content.sh | jq -c -f detail_transaction_input_logic.jq | jq -s -c -f ./signature_transaction.jq | grep --line-buffered . | node signature_transaction.js | jq .
+./list_blockhash_between_dates.sh "2015-07-01 00:00:00 -0700" "2015-07-02 01:00:00 -0700" | ./list_blockhash_txid.sh| ./raw_transaction_multi.sh |jq -c -f ./detail_transaction_input.jq | ./decode_input_hexscript.sh| jq -c -f detail_transaction_input_decode.jq | ./get_transaction_input_content.sh | jq -c -f detail_transaction_input_logic.jq | jq -s -c -f ./signature_transaction.jq | grep --line-buffered . | node signature_transaction.js | jq .
 
 
 ./list_blockhash_between_dates.sh "2015-03-01 00:00:00 -0700" "2015-03-01 01:00:00 -0700" | ./list_blockhash_txid.sh | ./raw_transaction_multi.sh | jq -c -f ./detail_transaction_input.jq | ./decode_input_hexscript.sh | jq -c -f detail_transaction_input_decode.jq | ./get_transaction_input_content.sh | jq -c -f detail_transaction_input_logic.jq | node signature_transaction.js | jq -c . >> node_signature_transaction.json
